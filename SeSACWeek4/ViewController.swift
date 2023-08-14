@@ -22,7 +22,11 @@ class ViewController: UIViewController {
     
     var movieList: [Movie] = []
     
-    var result: Boxoffice?
+    var result: Boxoffice?{
+        didSet{
+            self.movieTableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +88,7 @@ class ViewController: UIViewController {
         //                print(error)
         //            }
         //        }
-            }
+        }
 }
 
 extension ViewController: UISearchBarDelegate {
@@ -104,8 +108,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell")!
         
-        cell.textLabel?.text = self.result?.boxOfficeResult.dailyBoxOfficeList[indexPath.row].movieTitle
-        cell.detailTextLabel?.text = self.result?.boxOfficeResult.dailyBoxOfficeList[indexPath.row]
+        cell.textLabel?.text = self.result?.boxOfficeResult.dailyBoxOfficeList[indexPath.row].movieNm
+        cell.detailTextLabel?.text = self.result?.boxOfficeResult.dailyBoxOfficeList[indexPath.row].openDt
         
         return cell
     }
