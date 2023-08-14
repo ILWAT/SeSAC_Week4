@@ -65,41 +65,49 @@ class VideoViewController: UIViewController {
         
         print(url)
         
-        AF.request(url, method: .get, headers: header).validate(statusCode: 200...500).responseJSON { response in
-            switch response.result {
+        AF.request(url, method: .get, headers: header).validate(statusCode: 200...500).responseDecodable(of: Boxoffice.self) { response in
+            switch response.result{
             case .success(let value):
-                let json = JSON(value)
-//                print("JSON: \(json)")
-                
-                let statusCode = response.response?.statusCode ?? 500
-                
-                if statusCode == 200{
-                    
-                    self.isEnd = json["meta"]["is_end"].boolValue
-                    
-                    for item in json["documents"].arrayValue{
-                        let author = item["author"].stringValue
-                        let date = item["datetime"].stringValue
-                        let title = item["title"].stringValue
-                        let time = item["play_time"].intValue
-                        let thumbnail = item["thumbnail"].stringValue
-                        let link = item["url"].stringValue
-                        
-                        let data = Video(author: author, date: date, time: time, thumbnail: thumbnail, title: title, url: link)
-                        
-                        self.videoList.append(data)
-                        
-//                        print(self.videoList)
-                        
-                        self.videoTableView.reloadData()
-                    }
-                } else {
-                    print("문제가 발생했어요. 잠시후 다시 시도해주세요.")
-                }
+                print(value)
             case .failure(let error):
                 print(error)
             }
         }
+//        responseJSON { response in
+//            switch response.result {
+//            case .success(let value):
+//                let json = JSON(value)
+////                print("JSON: \(json)")
+//
+//                let statusCode = response.response?.statusCode ?? 500
+//
+//                if statusCode == 200{
+//
+//                    self.isEnd = json["meta"]["is_end"].boolValue
+//
+//                    for item in json["documents"].arrayValue{
+//                        let author = item["author"].stringValue
+//                        let date = item["datetime"].stringValue
+//                        let title = item["title"].stringValue
+//                        let time = item["play_time"].intValue
+//                        let thumbnail = item["thumbnail"].stringValue
+//                        let link = item["url"].stringValue
+//
+//                        let data = Video(author: author, date: date, time: time, thumbnail: thumbnail, title: title, url: link)
+//
+//                        self.videoList.append(data)
+//
+////                        print(self.videoList)
+//
+//                        self.videoTableView.reloadData()
+//                    }
+//                } else {
+//                    print("문제가 발생했어요. 잠시후 다시 시도해주세요.")
+//                }
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
 
 }
