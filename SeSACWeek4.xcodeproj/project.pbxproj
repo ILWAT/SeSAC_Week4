@@ -29,6 +29,7 @@
 		DEA9CD442A8A003E006BA1A4 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA9CD432A8A003E006BA1A4 /* ReusableProtocol.swift */; };
 		DEA9CD462A8A0255006BA1A4 /* BoxOfficeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA9CD452A8A0255006BA1A4 /* BoxOfficeData.swift */; };
 		DEA9CD482A8A0C75006BA1A4 /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA9CD472A8A0C75006BA1A4 /* UserDefaultHelper.swift */; };
+		DEA9CD7F2A8D18E4006BA1A4 /* KakaoVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA9CD7E2A8D18E4006BA1A4 /* KakaoVideoData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		DEA9CD432A8A003E006BA1A4 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		DEA9CD452A8A0255006BA1A4 /* BoxOfficeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeData.swift; sourceTree = "<group>"; };
 		DEA9CD472A8A0C75006BA1A4 /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
+		DEA9CD7E2A8D18E4006BA1A4 /* KakaoVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoVideoData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				DE57E2942A89EEB400BA4679 /* URL+Extension.swift */,
 				DE57E2962A89EED900BA4679 /* KakaoAPIManager.swift */,
 				DEA9CD452A8A0255006BA1A4 /* BoxOfficeData.swift */,
+				DEA9CD7E2A8D18E4006BA1A4 /* KakaoVideoData.swift */,
 			);
 			path = SeSACWeek4;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				DEA9CD442A8A003E006BA1A4 /* ReusableProtocol.swift in Sources */,
 				DE57E2952A89EEB400BA4679 /* URL+Extension.swift in Sources */,
 				DE57E2832A89D73200BA4679 /* APIKey.swift in Sources */,
+				DEA9CD7F2A8D18E4006BA1A4 /* KakaoVideoData.swift in Sources */,
 				DE57E28B2A89EAC700BA4679 /* AsyncViewController.swift in Sources */,
 				DE8262782A81C4E6006B6AF8 /* WeatherViewController.swift in Sources */,
 				DE8262592A80967D006B6AF8 /* ViewController.swift in Sources */,

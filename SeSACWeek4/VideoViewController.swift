@@ -10,17 +10,6 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 
-
-/*    json 저장 형태
- 
-      "author": "HYBE LABELS",
-      "datetime": "2020-07-13T18:00:00.000+09:00",
-      "play_time": 245,
-      "thumbnail": "https://search4.kakaocdn.net/argon/138x78_80_pr/7Zb2A26saFc",
-      "title": "GFRIEND (여자친구) 'Apple' Official M/V",
-      "url": "http://www.youtube.com/watch?v=XQSse3b2ge4"
-*/
-
 struct Video {
     let author: String
     let date: String
@@ -45,6 +34,8 @@ class VideoViewController: UIViewController {
     var videoList: [Video] = []
     var pageNumber = 1
     var isEnd = false //현재 페이지가 마지막 페이지인지 점검하는 프로퍼티
+    
+    var kakaoVideoData: KakaoVideoData? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +56,7 @@ class VideoViewController: UIViewController {
         
         print(url)
         
-        AF.request(url, method: .get, headers: header).validate(statusCode: 200...500).responseDecodable(of: Boxoffice.self) { response in
+        AF.request(url, method: .get, headers: header).validate(statusCode: 200...500).responseDecodable(of: KakaoVideoData.self) { response in
             switch response.result{
             case .success(let value):
                 print(value)
@@ -117,14 +108,16 @@ class VideoViewController: UIViewController {
 extension VideoViewController: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return videoList.count
+        guard let kakaoVideoData else {return 0}
+        return kakaoVideoData.documents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let kakaoVideoData else {return UITableViewCell() }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "VideoTableViewCell") as? VideoTableViewCell else { return UITableViewCell()}
         
-        cell.titleLabel.text = videoList[indexPath.row].title
-        cell.contentLabel.text = videoList[indexPath.row].contents
+        cell.titleLabel.text = kakaoVideoData.documents[indexPath.row].title
+        cell.contentLabel.text = String(kakaoVideoData.documents[indexPath.row].playTime)
         
         if let url = URL(string: videoList[indexPath.row].thumbnail){
             cell.thumbnailImageView.kf.setImage(with: url)
