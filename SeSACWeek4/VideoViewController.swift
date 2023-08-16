@@ -31,11 +31,10 @@ class VideoViewController: UIViewController {
     @IBOutlet weak var videoTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var videoList: [Video] = []
+    var videoList: [Document] = []
     var pageNumber = 1
     var isEnd = false //현재 페이지가 마지막 페이지인지 점검하는 프로퍼티
     
-    var kakaoVideoData: KakaoVideoData? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +59,8 @@ class VideoViewController: UIViewController {
             switch response.result{
             case .success(let value):
                 print(value)
+                self.videoList = value.documents
+                self.videoTableView.reloadData()
             case .failure(let error):
                 print(error)
             }
@@ -108,16 +109,14 @@ class VideoViewController: UIViewController {
 extension VideoViewController: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let kakaoVideoData else {return 0}
-        return kakaoVideoData.documents.count
+        return videoList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let kakaoVideoData else {return UITableViewCell() }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "VideoTableViewCell") as? VideoTableViewCell else { return UITableViewCell()}
         
-        cell.titleLabel.text = kakaoVideoData.documents[indexPath.row].title
-        cell.contentLabel.text = String(kakaoVideoData.documents[indexPath.row].playTime)
+        cell.titleLabel.text = videoList[indexPath.row].title
+        cell.contentLabel.text = String(videoList[indexPath.row].playTime)
         
         if let url = URL(string: videoList[indexPath.row].thumbnail){
             cell.thumbnailImageView.kf.setImage(with: url)
