@@ -90,29 +90,69 @@
 		DE8262532A80967D006B6AF8 /* SeSACWeek4 */ = {
 			isa = PBXGroup;
 			children = (
+				DEA9CD9B2A8E121B006BA1A4 /* Resource */,
+				DEA9CD9A2A8E1208006BA1A4 /* Presentation */,
+				DEA9CD992A8E11E1006BA1A4 /* Extension */,
+				DEA9CD982A8E11D5006BA1A4 /* Model */,
+				DEA9CD972A8E1179006BA1A4 /* App */,
 				DE8262712A809BA5006B6AF8 /* .gitignore */,
-				DE8262542A80967D006B6AF8 /* AppDelegate.swift */,
-				DEA9CD472A8A0C75006BA1A4 /* UserDefaultHelper.swift */,
+				DE8262622A80967F006B6AF8 /* Info.plist */,
+			);
+			path = SeSACWeek4;
+			sourceTree = "<group>";
+		};
+		DEA9CD972A8E1179006BA1A4 /* App */ = {
+			isa = PBXGroup;
+			children = (
 				DE8262562A80967D006B6AF8 /* SceneDelegate.swift */,
+				DE8262542A80967D006B6AF8 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		DEA9CD982A8E11D5006BA1A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DE57E2962A89EED900BA4679 /* KakaoAPIManager.swift */,
+				DEA9CD7E2A8D18E4006BA1A4 /* KakaoVideoData.swift */,
+				DEA9CD452A8A0255006BA1A4 /* BoxOfficeData.swift */,
+				DEA9CD472A8A0C75006BA1A4 /* UserDefaultHelper.swift */,
+				DE57E2822A89D73200BA4679 /* APIKey.swift */,
+				DE57E2922A89EE8900BA4679 /* EndPoint.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DEA9CD992A8E11E1006BA1A4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DEA9CD432A8A003E006BA1A4 /* ReusableProtocol.swift */,
+				DE57E2942A89EEB400BA4679 /* URL+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DEA9CD9A2A8E1208006BA1A4 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				DE8262732A809C34006B6AF8 /* TranslationViewController.swift */,
 				DE8262582A80967D006B6AF8 /* ViewController.swift */,
 				DE82625A2A80967D006B6AF8 /* Main.storyboard */,
 				DE57E28A2A89EAC700BA4679 /* AsyncViewController.swift */,
 				DE7407662A83230C008CC62A /* VideoTableViewCell.swift */,
 				DE74072B2A81E7AC008CC62A /* VideoViewController.swift */,
 				DE8262772A81C4E6006B6AF8 /* WeatherViewController.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		DEA9CD9B2A8E121B006BA1A4 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
 				DE82625D2A80967F006B6AF8 /* Assets.xcassets */,
 				DE82625F2A80967F006B6AF8 /* LaunchScreen.storyboard */,
-				DE8262622A80967F006B6AF8 /* Info.plist */,
-				DE8262732A809C34006B6AF8 /* TranslationViewController.swift */,
-				DE57E2822A89D73200BA4679 /* APIKey.swift */,
-				DE57E2922A89EE8900BA4679 /* EndPoint.swift */,
-				DEA9CD432A8A003E006BA1A4 /* ReusableProtocol.swift */,
-				DE57E2942A89EEB400BA4679 /* URL+Extension.swift */,
-				DE57E2962A89EED900BA4679 /* KakaoAPIManager.swift */,
-				DEA9CD452A8A0255006BA1A4 /* BoxOfficeData.swift */,
-				DEA9CD7E2A8D18E4006BA1A4 /* KakaoVideoData.swift */,
 			);
-			path = SeSACWeek4;
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
