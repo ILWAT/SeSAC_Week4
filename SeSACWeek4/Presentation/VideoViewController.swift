@@ -31,7 +31,11 @@ class VideoViewController: UIViewController {
     @IBOutlet weak var videoTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var videoList: [Document] = []
+    var videoList: [Document] = []{
+        didSet{
+            self.videoTableView.reloadData()
+        }
+    }
     var pageNumber = 1
     var isEnd = false //현재 페이지가 마지막 페이지인지 점검하는 프로퍼티
     
@@ -129,10 +133,14 @@ extension VideoViewController: UITableViewDelegate, UITableViewDataSource, UITab
     //셀이 화면에 보이기 직전에 필요한 리소스를 미리 다운 받는 기능
     //videoList 갯수와 indexPath.row 위치를 비교해 마지막 스크롤 시점을 확인 -> 네트워크 요청 시도
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard let inputText = searchBar.text else {return}
         for indexPath in indexPaths {
             if videoList.count - 1 == indexPath.row && pageNumber < 15 && !isEnd {
                 pageNumber += 1
-                callRequest(query: searchBar.text!, page: pageNumber)
+//                callRequest(query: searchBar.text!, page: pageNumber)
+                KakaoAPIManager.shared.callVideoRequest(type: .video, query: inputText, page: pageNumber){ result in
+                    self.videoList = result.documents
+                }
             }
         }
     }
@@ -150,7 +158,10 @@ extension VideoViewController: UISearchBarDelegate {
         pageNumber = 1 //새로운 검색어이기 때문에 page를 1로 변경
         videoList.removeAll()
         
-        callRequest(query: inputText, page: pageNumber)
+//        callRequest(query: inputText, page: pageNumber)
+        KakaoAPIManager.shared.callVideoRequest(type: .video, query: inputText, page: pageNumber) { result in
+            self.videoList = result.documents
+        }
     }
 
 }
